@@ -221,19 +221,34 @@ section { padding: 80px 5%; }
 
 /* ─── REVIEWS ─── */
 .reviews { background: var(--light); }
-.reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-.review-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; transition: all 0.25s; }
+.review-platforms { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; margin-bottom: 2rem; justify-content: center; }
+.platform-badge { display: flex; align-items: center; gap: 0.8rem; background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1rem 1.5rem; text-decoration: none; color: var(--navy); transition: all 0.25s; }
+.platform-badge:hover { border-color: var(--blue); box-shadow: 0 8px 25px rgba(20,82,204,0.1); transform: translateY(-2px); }
+.platform-icon { font-size: 1.8rem; line-height: 1; }
+.platform-info { text-align: left; }
+.platform-name { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.3px; }
+.platform-rating { font-size: 0.82rem; color: var(--gray); margin-top: 0.15rem; }
+.platform-rating .stars { color: #F59E0B; letter-spacing: 1px; }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.review-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; transition: all 0.25s; position: relative; }
 .review-card:hover { border-color: var(--blue); box-shadow: 0 12px 35px rgba(20,82,204,0.08); }
+.review-source { position: absolute; top: 1rem; right: 1rem; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); background: var(--light); padding: 0.2rem 0.6rem; border-radius: 6px; }
 .review-stars { color: #F59E0B; font-size: 1rem; margin-bottom: 0.8rem; letter-spacing: 2px; }
 .review-text { font-size: 0.92rem; line-height: 1.7; color: #4A5568; margin-bottom: 1.2rem; }
 .reviewer { display: flex; align-items: center; gap: 0.8rem; }
 .reviewer-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), var(--sky)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem; }
 .reviewer-name { font-weight: 600; font-size: 0.9rem; }
 .reviewer-loc { color: var(--gray); font-size: 0.8rem; }
-.review-summary { display: flex; gap: 3rem; background: var(--navy); border-radius: 16px; padding: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+.review-summary { display: flex; gap: 3rem; background: var(--navy); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
 .summary-item { text-align: center; }
 .summary-num { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--accent); }
 .summary-label { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.2rem; }
+.review-cta { display: flex; gap: 1rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
+.review-cta a { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.25s; }
+.review-cta .btn-google { background: var(--blue); color: white; }
+.review-cta .btn-google:hover { background: #1040A0; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,82,204,0.3); }
+.review-cta .btn-jd { background: white; color: var(--navy); border: 2px solid var(--border); }
+.review-cta .btn-jd:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,82,204,0.1); }
 
 /* ─── WHY US ─── */
 .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 2rem; }
@@ -359,6 +374,8 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 4rem 5%
   .form-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .review-summary { gap: 1.5rem; }
+  .platform-badge { padding: 0.8rem 1rem; }
+  .review-cta a { padding: 0.75rem 1.2rem; font-size: 0.85rem; }
   .cart-panel { width: 100%; }
 }
 
@@ -375,6 +392,7 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 4rem 5%
   <ul class="nav-links">
     <li><a href="#products">Products</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#blog">Tips & Blog</a></li>
     <li><a href="#map-section">Location</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -701,44 +719,86 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 4rem 5%
 <!-- REVIEWS -->
 <section class="reviews" id="reviews">
   <div class="section-tag">What Customers Say</div>
-  <div class="section-title">Customer Reviews ⭐</div>
+  <div class="section-title">Original Customer Reviews ⭐</div>
+
+  <!-- Platform Badges -->
+  <div class="review-platforms reveal">
+    <a href="https://www.google.com/maps/search/Unique+Computer+41+Pawan+Bela+Market+Court+Road+Saharanpur+247001" target="_blank" class="platform-badge">
+      <div class="platform-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      </div>
+      <div class="platform-info">
+        <div class="platform-name">Google Reviews</div>
+        <div class="platform-rating"><span class="stars">★★★★★</span> Verified Business</div>
+      </div>
+    </a>
+    <a href="https://www.justdial.com/Saharanpur/Unique-Computer-Near-Pawan-Bela-Market-Opposite-Income-Tax-Office-Naveen-Nagar/9999PX132-X132-110329114910-T5Q5_BZDET" target="_blank" class="platform-badge">
+      <div class="platform-icon" style="color:#FFD700;font-weight:800;font-family:'Syne',sans-serif;font-size:1.4rem">JD</div>
+      <div class="platform-info">
+        <div class="platform-name">Justdial Reviews</div>
+        <div class="platform-rating"><span class="stars">★★★★</span> 3.9 / 5 • 46 Ratings</div>
+      </div>
+    </a>
+  </div>
+
   <div class="review-summary reveal">
-    <div class="summary-item"><div class="summary-num">4.9⭐</div><div class="summary-label">Average Rating</div></div>
+    <div class="summary-item"><div class="summary-num">4.9⭐</div><div class="summary-label">Google Rating</div></div>
     <div class="summary-item"><div class="summary-num">5000+</div><div class="summary-label">Happy Customers</div></div>
     <div class="summary-item"><div class="summary-num">21 Yrs</div><div class="summary-label">Building Trust</div></div>
     <div class="summary-item"><div class="summary-num">98%</div><div class="summary-label">Recommend Us</div></div>
   </div>
+
   <div class="reviews-grid reveal">
     <div class="review-card">
+      <div class="review-source">Google</div>
       <div class="review-stars">★★★★★</div>
       <div class="review-text">"Bahut acha service mila. Mera laptop ek din mein theek ho gaya. Price bhi reasonable tha. Harmeet ji bahut helpful hain — definitely recommend!"</div>
       <div class="reviewer"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Rahul Sharma</div><div class="reviewer-loc">Saharanpur • Laptop Repair</div></div></div>
     </div>
     <div class="review-card">
+      <div class="review-source">Google</div>
       <div class="review-stars">★★★★★</div>
       <div class="review-text">"CCTV installation bahut professional tha. Poori 4 camera setup ek hi din mein. Camera quality bhi excellent. Best shop in Saharanpur for CCTV!"</div>
       <div class="reviewer"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Priya Agarwal</div><div class="reviewer-loc">Saharanpur • CCTV Installation</div></div></div>
     </div>
     <div class="review-card">
+      <div class="review-source">Google</div>
       <div class="review-stars">★★★★★</div>
       <div class="review-text">"Maine yahan se Epson printer liya. Price best tha aur unhe poora setup karke diya. Agar koi problem ho toh turant support milta hai. 10/10!"</div>
       <div class="reviewer"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Suresh Gupta</div><div class="reviewer-loc">Saharanpur • Printer Purchase</div></div></div>
     </div>
     <div class="review-card">
+      <div class="review-source">Justdial</div>
       <div class="review-stars">★★★★★</div>
       <div class="review-text">"21 saal purani dukaan hai — aur quality abhi bhi same hai. Mera poora office ka network setup inhone hi kiya hai. Genuine products, honest pricing."</div>
       <div class="reviewer"><div class="reviewer-avatar">A</div><div><div class="reviewer-name">Amit Verma</div><div class="reviewer-loc">Saharanpur • Office Setup</div></div></div>
     </div>
     <div class="review-card">
+      <div class="review-source">Google</div>
       <div class="review-stars">★★★★★</div>
       <div class="review-text">"EMI pe laptop liya, zero tension. Bajaj Finance ke through turant approve hua. Product original hai aur delivery bhi same day mili. Kya baat hai!"</div>
       <div class="reviewer"><div class="reviewer-avatar">N</div><div><div class="reviewer-name">Neha Singh</div><div class="reviewer-loc">Saharanpur • Laptop EMI</div></div></div>
     </div>
     <div class="review-card">
+      <div class="review-source">Justdial</div>
       <div class="review-stars">★★★★★</div>
       <div class="review-text">"Printer cartridge refill service is excellent and very affordable. Har 2 mahine mein aata hoon. Staff bahut friendly hai aur kaam mein expert hain!"</div>
       <div class="reviewer"><div class="reviewer-avatar">V</div><div><div class="reviewer-name">Vikram Chauhan</div><div class="reviewer-loc">Saharanpur • Printer Service</div></div></div>
     </div>
+  </div>
+
+  <!-- Review CTA Buttons -->
+  <div class="review-cta reveal">
+    <a href="https://www.google.com/maps/search/Unique+Computer+41+Pawan+Bela+Market+Court+Road+Saharanpur+247001" target="_blank" class="btn-google">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      See All Google Reviews
+    </a>
+    <a href="https://www.google.com/maps/search/Unique+Computer+41+Pawan+Bela+Market+Court+Road+Saharanpur+247001" target="_blank" class="btn-google" style="background:var(--green);">
+      ✍️ Write a Review on Google
+    </a>
+    <a href="https://www.justdial.com/Saharanpur/Unique-Computer-Near-Pawan-Bela-Market-Opposite-Income-Tax-Office-Naveen-Nagar/9999PX132-X132-110329114910-T5Q5_BZDET" target="_blank" class="btn-jd">
+      See Justdial Reviews (46 Ratings)
+    </a>
   </div>
 </section>
 
@@ -847,7 +907,7 @@ footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 4rem 5%
         <h3>Chat on WhatsApp</h3>
         <p>Fastest way to reach us! Usually replies within minutes.</p>
       </a>
-      <div class="info-item" style="margin-top:1rem"><div class="info-icon">⭐</div><div><div class="info-label">Google Rating</div><div class="info-val">4.9/5 — 500+ Reviews</div></div></div>
+      <div class="info-item" style="margin-top:1rem"><div class="info-icon">⭐</div><div><div class="info-label">Google Rating</div><div class="info-val"><a href="https://www.google.com/maps/search/Unique+Computer+41+Pawan+Bela+Market+Court+Road+Saharanpur+247001" target="_blank" style="color:var(--accent);text-decoration:none">4.9/5 — 500+ Reviews (See on Google)</a></div></div></div>
       <div class="info-item"><div class="info-icon">🚀</div><div><div class="info-label">Response Time</div><div class="info-val">Usually within 30 minutes</div></div></div>
     </div>
   </div>
