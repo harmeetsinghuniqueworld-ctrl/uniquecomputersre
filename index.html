@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unique Computers - Saharanpur</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #060D1A; font-family: 'DM Sans', sans-serif;
+  height: 100vh; width: 100vw; overflow: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.h-line { position: fixed; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,198,255,0.15), transparent); z-index: 1; }
+
+/* ── PHASE 1: CAROUSEL ── */
+#phase1 {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; width: 100%;
+  transition: opacity 0.8s ease;
+}
+#phase1.fadeout { opacity: 0; pointer-events: none; }
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(20,82,204,0.2); border: 1px solid rgba(20,82,204,0.5);
+  color: #0CF2FF; padding: 0.4rem 1.2rem; border-radius: 100px;
+  font-size: 0.78rem; letter-spacing: 1px; margin-bottom: 1.5rem;
+}
+.hero-tag::before { content: '●'; font-size: 0.5rem; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:0.2} }
+
+.carousel-scene {
+  width: 100%; display: flex; align-items: center; justify-content: center;
+  perspective: 1200px; height: 360px;
+}
+.carousel-3d { position: relative; width: 280px; height: 320px; transform-style: preserve-3d; }
+.card-3d { position: absolute; width: 250px; height: 310px; border-radius: 20px; cursor: pointer; }
+.card-inner {
+  position: absolute; inset: 0; border-radius: 20px;
+  background: rgba(8,18,40,0.92); border: 1px solid rgba(255,255,255,0.06);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  overflow: hidden; z-index: 1;
+}
+.card-glow { position: absolute; inset: -2px; border-radius: 22px; z-index: 0; opacity: 0; transition: opacity 0.4s; }
+.card-3d.active .card-glow { opacity: 1; animation: rotateBorder 3s linear infinite; }
+@keyframes rotateBorder {
+  0%   { background: conic-gradient(from 0deg,   #FF6B35,#1452CC,#0CF2FF,#1452CC,#FF6B35); }
+  100% { background: conic-gradient(from 360deg, #FF6B35,#1452CC,#0CF2FF,#1452CC,#FF6B35); }
+}
+.scan {
+  position: absolute; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg,transparent,rgba(0,198,255,0.9),transparent);
+  box-shadow: 0 0 12px rgba(0,198,255,0.6); z-index: 3; opacity: 0;
+}
+.card-3d.active .scan { opacity: 1; animation: scanLine 2.5s ease-in-out infinite; }
+@keyframes scanLine { 0%{top:0%;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:100%;opacity:0} }
+.c { position: absolute; width: 16px; height: 16px; z-index: 4; opacity: 0; transition: opacity 0.4s; }
+.card-3d.active .c { opacity: 1; }
+.c.tl{top:8px;left:8px;border-top:2px solid #FF6B35;border-left:2px solid #FF6B35;border-radius:3px 0 0 0}
+.c.tr{top:8px;right:8px;border-top:2px solid #0CF2FF;border-right:2px solid #0CF2FF;border-radius:0 3px 0 0}
+.c.bl{bottom:8px;left:8px;border-bottom:2px solid #0CF2FF;border-left:2px solid #0CF2FF;border-radius:0 0 0 3px}
+.c.br{bottom:8px;right:8px;border-bottom:2px solid #FF6B35;border-right:2px solid #FF6B35;border-radius:0 0 3px 0}
+.card-emoji {
+  font-size: 3.8rem; margin-bottom: 0.7rem; position: relative; z-index: 2;
+  transition: transform 0.4s; filter: drop-shadow(0 0 0px rgba(0,198,255,0));
+}
+.card-3d.active .card-emoji {
+  filter: drop-shadow(0 0 16px rgba(0,198,255,0.6));
+  transform: scale(1.1); animation: floatEmoji 3s ease-in-out infinite;
+}
+@keyframes floatEmoji { 0%,100%{transform:scale(1.1) translateY(0)}50%{transform:scale(1.1) translateY(-7px)} }
+.card-title {
+  font-family:'Syne',sans-serif; font-weight:800; font-size:1.1rem; color:white;
+  margin-bottom:0.3rem; text-align:center; position:relative; z-index:2; opacity:0.4; transition:opacity 0.4s;
+}
+.card-3d.active .card-title { opacity: 1; }
+.card-desc {
+  font-size:0.78rem; color:rgba(255,255,255,0.35); text-align:center;
+  padding:0 1rem; line-height:1.5; position:relative; z-index:2; transition:color 0.4s;
+}
+.card-3d.active .card-desc { color: rgba(255,255,255,0.6); }
+.card-badge {
+  position:absolute; top:12px; right:12px;
+  background:linear-gradient(135deg,#FF6B35,#FF2D9B);
+  color:white; font-size:0.62rem; font-weight:700;
+  padding:0.18rem 0.5rem; border-radius:100px; z-index:4; opacity:0; transition:opacity 0.4s;
+}
+.card-3d.active .card-badge { opacity: 1; }
+.card-bg-glow {
+  position:absolute; inset:0; border-radius:20px; opacity:0; transition:opacity 0.4s;
+  background:radial-gradient(ellipse at center,rgba(20,82,204,0.15) 0%,transparent 70%); z-index:1;
+}
+.card-3d.active .card-bg-glow { opacity: 1; }
+.sparkle { position:absolute; bottom:12px; right:12px; color:rgba(255,215,0,0.8); font-size:0.95rem; z-index:4; opacity:0; }
+.card-3d.active .sparkle { opacity:1; animation:sparkAnim 2s ease-in-out infinite; }
+@keyframes sparkAnim { 0%,100%{transform:scale(1);opacity:0.5}50%{transform:scale(1.4);opacity:1} }
+.nav-dots { display:flex; gap:0.55rem; margin-top:1.5rem; }
+.dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,0.2); border:none; cursor:pointer; transition:all 0.3s; }
+.dot.active { background:#FF6B35; transform:scale(1.4); box-shadow:0 0 8px rgba(255,107,53,0.7); }
+
+/* ── PHASE 2: Flash + Big Title ── */
+#phase2 {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: #060D1A;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+#phase2.show { opacity: 1; pointer-events: all; }
+
+.flash-overlay {
+  position: absolute; inset: 0; background: white; opacity: 0; pointer-events: none; z-index: 5;
+}
+@keyframes flashAnim {
+  0%   { opacity: 0; }
+  12%  { opacity: 1; }
+  28%  { opacity: 0; }
+  45%  { opacity: 0.7; }
+  60%  { opacity: 0; }
+  75%  { opacity: 0.3; }
+  100% { opacity: 0; }
+}
+.flash-overlay.go { animation: flashAnim 1s ease forwards; }
+
+/* Glow rings */
+.glow-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(12,242,255,0.12);
+  pointer-events: none; z-index: 2;
+}
+.glow-ring:nth-child(2) { width:260px; height:260px; top:50%; left:50%; transform:translate(-50%,-50%); animation:ringPulse 2.5s ease-out infinite; }
+.glow-ring:nth-child(3) { width:460px; height:460px; top:50%; left:50%; transform:translate(-50%,-50%); animation:ringPulse 2.5s ease-out 0.4s infinite; }
+.glow-ring:nth-child(4) { width:660px; height:660px; top:50%; left:50%; transform:translate(-50%,-50%); animation:ringPulse 2.5s ease-out 0.8s infinite; }
+@keyframes ringPulse { 0%{opacity:0.5;transform:translate(-50%,-50%) scale(0.85)} 100%{opacity:0;transform:translate(-50%,-50%) scale(1.15)} }
+
+/* Big brand name */
+.big-title-wrap {
+  position: relative; z-index: 6; text-align: center;
+  opacity: 0; transform: scale(0.4);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1);
+}
+.big-title-wrap.show { opacity: 1; transform: scale(1); }
+
+.big-title {
+  font-family: 'Syne', sans-serif; font-weight: 900;
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 1; letter-spacing: -2px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #0CF2FF 50%, #1452CC 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  filter: drop-shadow(0 0 50px rgba(12,242,255,0.45));
+}
+.big-subtitle {
+  font-family: 'DM Sans', sans-serif; font-size: clamp(0.75rem, 2vw, 1rem);
+  color: rgba(255,255,255,0.45); letter-spacing: 5px; text-transform: uppercase; margin-top: 0.6rem;
+}
+
+/* ── PHASE 3: Bottom bar ── */
+#phase3 {
+  position: absolute; bottom: 2.5rem; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.2rem; flex-wrap: wrap; z-index: 6;
+  opacity: 0; transform: translateY(35px);
+  transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.34,1.56,0.64,1);
+}
+#phase3.show { opacity: 1; transform: translateY(0); }
+
+.social-tabs { display: flex; gap: 0.55rem; }
+.social-tab {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; font-size: 1.1rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  transition: all 0.25s; position: relative; overflow: hidden;
+}
+.social-tab span { position: relative; z-index: 1; }
+.social-tab::before { content:''; position:absolute; inset:0; opacity:0; transition:opacity 0.25s; }
+.social-tab:hover { transform:translateY(-4px); border-color:transparent; box-shadow:0 8px 20px rgba(0,0,0,0.3); }
+.social-tab:hover::before { opacity: 1; }
+.social-tab.fb::before { background: #1877F2; }
+.social-tab.ig::before { background: linear-gradient(135deg,#F58529,#DD2A7B,#8134AF); }
+.social-tab.yt::before { background: #FF0000; }
+.social-tab.wa::before { background: #25D366; }
+.social-tab.tw::before { background: #1DA1F2; }
+
+.divider { width: 1px; height: 30px; background: rgba(255,255,255,0.12); }
+
+.enter-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: linear-gradient(135deg,#1452CC,#0CF2FF);
+  color: white; padding: 0.8rem 2rem; border-radius: 12px;
+  text-decoration: none; font-family: 'Syne',sans-serif;
+  font-weight: 700; font-size: 0.92rem; letter-spacing: 0.5px;
+  border: none; cursor: pointer; transition: all 0.25s;
+  box-shadow: 0 4px 25px rgba(20,82,204,0.45);
+  position: relative; overflow: hidden;
+}
+.enter-btn::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent); opacity:0; transition:opacity 0.25s; }
+.enter-btn:hover { transform:translateY(-3px); box-shadow:0 10px 35px rgba(20,82,204,0.6); }
+.enter-btn:hover::after { opacity: 1; }
+.enter-arrow { transition:transform 0.25s; display:inline-block; }
+.enter-btn:hover .enter-arrow { transform:translateX(5px); }
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+<div class="h-line" style="top:35%"></div>
+<div class="h-line" style="top:65%"></div>
+
+<!-- PHASE 1 -->
+<div id="phase1">
+  <div class="hero-tag">Unique Computers — Saharanpur</div>
+  <div class="carousel-scene">
+    <div class="carousel-3d" id="carousel3d"></div>
+  </div>
+  <div class="nav-dots" id="navDots"></div>
+</div>
+
+<!-- PHASE 2 + 3 -->
+<div id="phase2">
+  <div class="flash-overlay" id="flashOverlay"></div>
+  <div class="glow-ring"></div>
+  <div class="glow-ring"></div>
+  <div class="glow-ring"></div>
+
+  <div class="big-title-wrap" id="bigTitle">
+    <div class="big-title">UNIQUE<br>COMPUTERS</div>
+    <div class="big-subtitle">Saharanpur &nbsp;•&nbsp; Est. 2005</div>
+  </div>
+
+  <div id="phase3">
+    <div class="social-tabs">
+      <a href="https://facebook.com"         target="_blank" class="social-tab fb" title="Facebook"  ><span>📘</span></a>
+      <a href="https://instagram.com"        target="_blank" class="social-tab ig" title="Instagram" ><span>📸</span></a>
+      <a href="https://youtube.com"          target="_blank" class="social-tab yt" title="YouTube"   ><span>▶️</span></a>
+      <a href="https://wa.me/919358485644"   target="_blank" class="social-tab wa" title="WhatsApp"  ><span>💬</span></a>
+      <a href="https://twitter.com"          target="_blank" class="social-tab tw" title="Twitter/X" ><span>🐦</span></a>
+    </div>
+    <div class="divider"></div>
+    <a href="index.html" class="enter-btn">🌐 Enter Website <span class="enter-arrow">→</span></a>
+  </div>
+</div>
+
+<script>
+const slides = [
+  { emoji:'🖨️', title:'Printers',       desc:'HP, Epson, Canon — sabhi brands', badge:'Popular' },
+  { emoji:'📷', title:'CCTV Systems',   desc:'Home & office security solutions', badge:'New'     },
+  { emoji:'💻', title:'Laptops',         desc:'HP, Lenovo, Dell — EMI available', badge:'Sale'   },
+  { emoji:'🖥️', title:'Desktops',       desc:'Custom assembled ya branded PCs',  badge:'Value'  },
+  { emoji:'🔧', title:'Repair Service', desc:'Same day expert repair guaranteed', badge:'Fast'   },
+  { emoji:'📶', title:'Networking',     desc:'WiFi, LAN, Router configuration',  badge:'Pro'    },
+];
+
+const n = slides.length;
+let current = 0;
+let autoTimer;
+const TOTAL_STEPS = n * 2; // 2 full rounds then stop
+let stepCount = 0;
+let done = false;
+
+const carousel = document.getElementById('carousel3d');
+const dotsEl   = document.getElementById('navDots');
+
+slides.forEach((s, i) => {
+  const card = document.createElement('div');
+  card.className = 'card-3d';
+  card.innerHTML = `
+    <div class="card-glow"></div>
+    <div class="card-inner">
+      <div class="card-bg-glow"></div>
+      <div class="scan"></div>
+      <div class="c tl"></div><div class="c tr"></div>
+      <div class="c bl"></div><div class="c br"></div>
+      <div class="card-badge">${s.badge}</div>
+      <div class="card-emoji">${s.emoji}</div>
+      <div class="card-title">${s.title}</div>
+      <div class="card-desc">${s.desc}</div>
+      <div class="sparkle">✦</div>
+    </div>`;
+  carousel.appendChild(card);
+});
+
+slides.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'dot';
+  dotsEl.appendChild(d);
+});
+
+function updateCarousel() {
+  const cards = carousel.querySelectorAll('.card-3d');
+  cards.forEach((card, i) => {
+    const offset = ((i - current + n) % n);
+    let tx, tz, ry, scale, opacity, zIndex;
+    if (offset === 0) {
+      tx=0; tz=200; ry=0; scale=1; opacity=1; zIndex=10;
+      card.classList.add('active');
+    } else if (offset===1 || offset===n-1) {
+      const dir = offset===1 ? 1 : -1;
+      tx=dir*280; tz=60; ry=dir*-35; scale=0.76; opacity=0.5; zIndex=5;
+      card.classList.remove('active');
+    } else if (offset===2 || offset===n-2) {
+      const dir = offset===2 ? 1 : -1;
+      tx=dir*460; tz=-80; ry=dir*-55; scale=0.55; opacity=0.22; zIndex=2;
+      card.classList.remove('active');
+    } else {
+      tx=0; tz=-300; ry=0; scale=0; opacity=0; zIndex=0;
+      card.classList.remove('active');
+    }
+    card.style.transform = `translateX(${tx}px) translateZ(${tz}px) rotateY(${ry}deg) scale(${scale})`;
+    card.style.opacity = opacity;
+    card.style.zIndex = zIndex;
+    card.style.transition = 'transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.7s ease';
+  });
+  dotsEl.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===current));
+}
+
+function autoStep() {
+  if (done) return;
+  current = (current + 1) % n;
+  stepCount++;
+  updateCarousel();
+  if (stepCount >= TOTAL_STEPS) {
+    clearInterval(autoTimer);
+    setTimeout(triggerSequence, 700);
+  }
+}
+
+updateCarousel();
+autoTimer = setInterval(autoStep, 2800);
+
+function triggerSequence() {
+  done = true;
+  // 1. Fade out carousel
+  document.getElementById('phase1').classList.add('fadeout');
+
+  setTimeout(() => {
+    // 2. Show phase2
+    document.getElementById('phase2').classList.add('show');
+
+    // 3. Flash!
+    setTimeout(() => {
+      document.getElementById('flashOverlay').classList.add('go');
+
+      // 4. Big title zooms in
+      setTimeout(() => {
+        document.getElementById('bigTitle').classList.add('show');
+
+        // 5. Buttons slide up
+        setTimeout(() => {
+          document.getElementById('phase3').classList.add('show');
+        }, 1000);
+      }, 350);
+    }, 150);
+  }, 700);
+}
+
+// Particles
+const canvas = document.getElementById('canvas');
+const ctx    = canvas.getContext('2d');
+function resize() { canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+
+const pts = Array.from({length:75}, () => ({
+  x:  Math.random()*canvas.width, y:  Math.random()*canvas.height,
+  r:  Math.random()*1.8+0.3,
+  dx: (Math.random()-.5)*0.35, dy: (Math.random()-.5)*0.35,
+  op: Math.random()*0.4+0.08
+}));
+
+(function anim(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pts.forEach(p => {
+    p.x+=p.dx; p.y+=p.dy;
+    if(p.x<0)p.x=canvas.width; if(p.x>canvas.width)p.x=0;
+    if(p.y<0)p.y=canvas.height; if(p.y>canvas.height)p.y=0;
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(0,198,255,${p.op})`; ctx.fill();
+    pts.forEach(p2=>{
+      const dx=p.x-p2.x, dy=p.y-p2.y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<90){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p2.x,p2.y); ctx.strokeStyle=`rgba(0,198,255,${0.05*(1-d/90)})`; ctx.lineWidth=0.5; ctx.stroke(); }
+    });
+  });
+  requestAnimationFrame(anim);
+})();
+</script>
+</body>
+</html>
