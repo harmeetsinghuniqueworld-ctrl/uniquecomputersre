@@ -1,3 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Unique Computers</title>
+
+<style>
+
+body{
+margin:0;
+background:#020617;
+color:white;
+font-family:Arial;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+overflow:hidden;
+}
+
+/* particles canvas */
+
+canvas{
+position:absolute;
+top:0;
+left:0;
+}
+
+/* logo */
+
+.logo{
+font-size:52px;
+font-weight:bold;
+color:#0CF2FF;
+text-shadow:0 0 20px #0CF2FF;
+animation:glow 2s infinite alternate;
+z-index:2;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px #1452CC;}
+to{ text-shadow:0 0 50px #0CF2FF;}
+}
+
+/* cube */
+
+.cube{
+width:150px;
+height:150px;
+position:relative;
+transform-style:preserve-3d;
+animation:spin 8s infinite linear;
+margin-top:40px;
+z-index:2;
+}
+
+.cube div{
+position:absolute;
+width:150px;
+height:150px;
+background:rgba(20,82,204,0.6);
+border:2px solid #0CF2FF;
+}
+
+.front{ transform:translateZ(75px);}
+.back{ transform:rotateY(180deg) translateZ(75px);}
+.left{ transform:rotateY(-90deg) translateZ(75px);}
+.right{ transform:rotateY(90deg) translateZ(75px);}
+.top{ transform:rotateX(90deg) translateZ(75px);}
+.bottom{ transform:rotateX(-90deg) translateZ(75px);}
+
+@keyframes spin{
+0%{transform:rotateX(0) rotateY(0)}
+100%{transform:rotateX(360deg) rotateY(360deg)}
+}
+
+/* button */
+
+.enter{
+margin-top:60px;
+padding:15px 40px;
+font-size:18px;
+background:#1452CC;
+border:none;
+border-radius:10px;
+color:white;
+cursor:pointer;
+z-index:2;
+}
+
+.enter:hover{
+background:#2D7DD2;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="logo">Unique Computers</div>
+
+<div class="cube">
+<div class="front"></div>
+<div class="back"></div>
+<div class="left"></div>
+<div class="right"></div>
+<div class="top"></div>
+<div class="bottom"></div>
+</div>
+
+<button class="enter" onclick="enterSite()">
+Enter Website
+</button>
+
+<script>
+
+/* redirect */
+
+function enterSite(){
+window.location.href="website.html"
+}
+
+/* auto redirect after 5 sec */
+
+setTimeout(function(){
+window.location.href="website.html"
+},5000)
+
+/* particles */
+
+const canvas=document.getElementById("particles")
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let particles=[]
+
+for(let i=0;i<150;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2,
+speed:Math.random()*1
+})
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+particles.forEach(p=>{
+
+ctx.fillStyle="#0CF2FF"
+ctx.fillRect(p.x,p.y,p.size,p.size)
+
+p.y+=p.speed
+
+if(p.y>canvas.height){
+p.y=0
+p.x=Math.random()*canvas.width
+}
+
+})
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+</script>
+
+</body>
 </html>
 <html lang="en">
 <head>
