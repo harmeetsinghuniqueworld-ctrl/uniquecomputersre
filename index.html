@@ -1,48 +1,1039 @@
-<!DOCTYPE html><html>
+</html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Unique Computers</title><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unique Computers - Saharanpur</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<style>
+:root {
+  --navy: #0A1628;
+  --blue: #1452CC;
+  --sky: #2D7DD2;
+  --accent: #0CF2FF;
+  --white: #FFFFFF;
+  --light: #F0F6FF;
+  --gray: #8A9BB5;
+  --border: #D4E2F5;
+  --green: #10B981;
+  --red: #EF4444;
+  --orange: #F59E0B;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--navy); overflow-x: hidden; }
 
-body{
-margin:0;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#020617;
-color:white;
-font-family:Arial;
-flex-direction:column;
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  background: rgba(10,22,40,0.97); backdrop-filter: blur(20px);
+  padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+  height: 70px; border-bottom: 1px solid rgba(20,82,204,0.3);
+}
+.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--white); letter-spacing: -0.5px; text-decoration: none; }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.cart-btn {
+  position: relative; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  color: white; padding: 0.5rem 1.1rem; border-radius: 8px; cursor: pointer;
+  font-size: 0.9rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.5rem;
+}
+.cart-btn:hover { background: rgba(20,82,204,0.3); }
+.cart-count {
+  position: absolute; top: -6px; right: -6px;
+  background: var(--red); color: white; font-size: 0.7rem;
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-weight: 700;
+  display: none;
+}
+.nav-cta {
+  background: var(--blue); color: white; border: none;
+  padding: 0.55rem 1.4rem; border-radius: 6px; font-size: 0.85rem;
+  cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--sky); }
+
+/* ─── OFFERS BANNER ─── */
+.offers-banner {
+  margin-top: 70px;
+  background: linear-gradient(135deg, #FF6B35, #F59E0B);
+  padding: 0; overflow: hidden;
+}
+.banner-track {
+  display: flex; animation: scroll-banner 25s linear infinite;
+  white-space: nowrap;
+}
+.banner-item {
+  padding: 0.65rem 3rem; font-size: 0.85rem; font-weight: 600;
+  color: white; flex-shrink: 0; letter-spacing: 0.3px;
+}
+.banner-item::after { content: ' ⭐ '; margin-left: 2rem; }
+@keyframes scroll-banner {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-.logo{
-font-size:60px;
-color:#0CF2FF;
-text-shadow:0 0 30px #0CF2FF;
+/* ─── HERO ─── */
+.hero {
+  min-height: 90vh; background: var(--navy);
+  display: flex; align-items: center;
+  padding: 60px 5%; position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(20,82,204,0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(12,242,255,0.08) 0%, transparent 60%);
+}
+.grid-lines {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(20,82,204,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(20,82,204,0.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-content { position: relative; z-index: 2; max-width: 620px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(20,82,204,0.2); border: 1px solid rgba(20,82,204,0.4);
+  color: var(--accent); padding: 0.4rem 1rem; border-radius: 100px;
+  font-size: 0.8rem; margin-bottom: 1.5rem; letter-spacing: 0.5px;
+}
+.hero-tag::before { content: '●'; font-size: 0.5rem; animation: blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+h1 { font-family: 'Syne', sans-serif; font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.1; color: var(--white); margin-bottom: 1.2rem; }
+h1 .blue { color: var(--accent); }
+.hero-sub { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 2.5rem; max-width: 480px; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { background: var(--blue); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; border: none; cursor: pointer; }
+.btn-primary:hover { background: var(--sky); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(20,82,204,0.4); }
+.btn-secondary { background: transparent; color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 0.95rem; border: 1px solid rgba(255,255,255,0.2); transition: all 0.2s; }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+.hero-stats { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1.5rem; z-index: 2; }
+.stat-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 1.2rem 1.8rem; border-radius: 12px; text-align: center; backdrop-filter: blur(10px); }
+.stat-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+.stat-label { color: rgba(255,255,255,0.5); font-size: 0.8rem; margin-top: 0.2rem; }
+
+/* ─── BRAND LOGOS ─── */
+.brands { background: var(--light); padding: 40px 5%; }
+.brands-title { text-align: center; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 2rem; }
+.brands-track-wrap { overflow: hidden; }
+.brands-track { display: flex; gap: 3rem; animation: scroll-brands 20s linear infinite; width: max-content; align-items: center; }
+.brand-logo {
+  background: white; border: 1px solid var(--border); border-radius: 10px;
+  padding: 0.8rem 2rem; font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 1rem; color: var(--gray);
+  white-space: nowrap; transition: color 0.2s;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+@keyframes scroll-brands { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ─── SECTIONS ─── */
+section { padding: 80px 5%; }
+.section-tag { display: inline-block; color: var(--blue); font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.7rem; }
+.section-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: var(--navy); margin-bottom: 0.8rem; line-height: 1.2; }
+.section-sub { color: var(--gray); font-size: 1rem; max-width: 500px; line-height: 1.7; }
+
+/* ─── SPECIAL OFFERS ─── */
+.special-offers { background: var(--navy); }
+.special-offers .section-title { color: white; }
+.offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+.offer-card {
+  border-radius: 16px; padding: 2rem; position: relative; overflow: hidden;
+  cursor: pointer; transition: transform 0.25s;
+}
+.offer-card:hover { transform: translateY(-4px); }
+.offer-card.red { background: linear-gradient(135deg, #7F1D1D, #DC2626); }
+.offer-card.green { background: linear-gradient(135deg, #064E3B, #059669); }
+.offer-card.blue { background: linear-gradient(135deg, #1E3A5F, #1452CC); }
+.offer-card.orange { background: linear-gradient(135deg, #78350F, #D97706); }
+.offer-bg { position: absolute; right: -20px; top: -20px; font-size: 7rem; opacity: 0.15; }
+.offer-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.5rem; }
+.offer-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; color: white; margin-bottom: 0.4rem; }
+.offer-desc { font-size: 0.88rem; color: rgba(255,255,255,0.7); margin-bottom: 1rem; }
+.offer-discount { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: white; }
+.offer-sub { font-size: 0.8rem; color: rgba(255,255,255,0.6); }
+
+/* ─── CATEGORIES ─── */
+.categories { background: var(--light); }
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 3rem; }
+.cat-card { background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem 1rem; text-align: center; cursor: pointer; transition: all 0.25s; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
+.cat-card:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 12px 35px rgba(20,82,204,0.12); }
+.cat-icon { width: 54px; height: 54px; background: var(--light); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.cat-card:hover .cat-icon { background: rgba(20,82,204,0.1); }
+.cat-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+
+/* ─── PRODUCTS ─── */
+.products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
+.filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tab { padding: 0.45rem 1.1rem; border-radius: 100px; border: 1px solid var(--border); background: white; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; color: var(--gray); }
+.tab.active { background: var(--blue); color: white; border-color: var(--blue); }
+.tab:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+.product-card { background: white; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.25s; }
+.product-card:hover { border-color: var(--blue); box-shadow: 0 16px 40px rgba(20,82,204,0.1); transform: translateY(-3px); }
+.product-img { background: var(--light); height: 180px; display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; }
+.badge { position: absolute; top: 12px; left: 12px; background: var(--blue); color: white; font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 100px; letter-spacing: 0.5px; }
+.badge.new { background: #10B981; }
+.badge.sale { background: #EF4444; }
+.product-info { padding: 1.2rem; }
+.product-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+.product-brand { color: var(--gray); font-size: 0.8rem; margin-bottom: 0.8rem; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.price { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--blue); }
+.price .old { font-size: 0.8rem; color: var(--gray); text-decoration: line-through; font-weight: 400; font-family: 'DM Sans',sans-serif; }
+.add-btn { width: 36px; height: 36px; border-radius: 8px; background: var(--blue); color: white; border: none; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+.add-btn:hover { background: var(--sky); }
+
+/* ─── SERVICES ─── */
+.services { background: var(--navy); }
+.services .section-title { color: white; }
+.services .section-sub { color: rgba(255,255,255,0.5); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.service-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2rem; transition: all 0.25s; }
+.service-card:hover { background: rgba(20,82,204,0.15); border-color: rgba(20,82,204,0.4); transform: translateY(-3px); }
+.service-icon { width: 52px; height: 52px; background: rgba(20,82,204,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem; }
+.service-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: white; margin-bottom: 0.6rem; }
+.service-desc { color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.6; }
+.service-price { margin-top: 1rem; color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+
+/* ─── EMI ─── */
+.emi { background: var(--light); }
+.emi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.emi-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; text-align: center; transition: all 0.25s; }
+.emi-card:hover { border-color: var(--blue); box-shadow: 0 12px 30px rgba(20,82,204,0.1); transform: translateY(-3px); }
+.emi-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+.emi-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
+.emi-desc { color: var(--gray); font-size: 0.85rem; line-height: 1.6; }
+.emi-highlight { background: rgba(20,82,204,0.08); border: 1px solid rgba(20,82,204,0.2); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; text-align: center; }
+.emi-highlight h3 { font-family: 'Syne',sans-serif; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--blue); }
+.emi-highlight p { color: var(--gray); font-size: 0.9rem; }
+
+/* ─── GALLERY ─── */
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; gap: 1rem; margin-top: 3rem; }
+.gallery-item { border-radius: 14px; overflow: hidden; background: var(--light); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 3rem; cursor: pointer; transition: transform 0.25s; position: relative; border: 1px solid var(--border); }
+.gallery-item:hover { transform: scale(1.02); }
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-item.tall { grid-row: span 2; aspect-ratio: auto; min-height: 300px; }
+.gallery-item.wide { grid-column: span 2; aspect-ratio: auto; min-height: 150px; }
+.gallery-overlay { position: absolute; inset: 0; background: rgba(20,82,204,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.25s; color: white; font-size: 0.9rem; font-weight: 600; }
+.gallery-label { position: absolute; bottom: 12px; left: 12px; background: rgba(10,22,40,0.8); color: white; font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 100px; }
+
+/* ─── REVIEWS ─── */
+.reviews { background: var(--light); }
+.review-platforms { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; margin-bottom: 2rem; justify-content: center; }
+.platform-badge { display: flex; align-items: center; gap: 0.8rem; background: white; border: 1px solid var(--border); border-radius: 14px; padding: 1rem 1.5rem; text-decoration: none; color: var(--navy); transition: all 0.25s; }
+.platform-badge:hover { border-color: var(--blue); box-shadow: 0 8px 25px rgba(20,82,204,0.1); transform: translateY(-2px); }
+.platform-icon { font-size: 1.8rem; line-height: 1; }
+.platform-info { text-align: left; }
+.platform-name { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.3px; }
+.platform-rating { font-size: 0.82rem; color: var(--gray); margin-top: 0.15rem; }
+.platform-rating .stars { color: #F59E0B; letter-spacing: 1px; }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.review-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; transition: all 0.25s; position: relative; }
+.review-card:hover { border-color: var(--blue); box-shadow: 0 12px 35px rgba(20,82,204,0.08); }
+.review-source { position: absolute; top: 1rem; right: 1rem; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); background: var(--light); padding: 0.2rem 0.6rem; border-radius: 6px; }
+.review-stars { color: #F59E0B; font-size: 1rem; margin-bottom: 0.8rem; letter-spacing: 2px; }
+.review-text { font-size: 0.92rem; line-height: 1.7; color: #4A5568; margin-bottom: 1.2rem; }
+.reviewer { display: flex; align-items: center; gap: 0.8rem; }
+.reviewer-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), var(--sky)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem; }
+.reviewer-name { font-weight: 600; font-size: 0.9rem; }
+.reviewer-loc { color: var(--gray); font-size: 0.8rem; }
+.owner-reply { background: var(--light); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; margin-top: 1rem; font-size: 0.85rem; line-height: 1.7; color: #4A5568; }
+.owner-reply-header { font-weight: 600; font-size: 0.8rem; color: var(--blue); margin-bottom: 0.4rem; }
+.review-summary { display: flex; gap: 3rem; background: var(--navy); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.summary-item { text-align: center; }
+.summary-num { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+.summary-label { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 0.2rem; }
+.review-cta { display: flex; gap: 1rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
+.review-cta a { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.25s; }
+.review-cta .btn-google { background: var(--blue); color: white; }
+.review-cta .btn-google:hover { background: #1040A0; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,82,204,0.3); }
+.review-cta .btn-jd { background: white; color: var(--navy); border: 2px solid var(--border); }
+.review-cta .btn-jd:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,82,204,0.1); }
+
+/* ─── WHY US ─── */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 2rem; }
+.why-points { display: flex; flex-direction: column; gap: 1.5rem; }
+.why-point { display: flex; gap: 1rem; align-items: flex-start; }
+.point-icon { min-width: 44px; height: 44px; background: rgba(20,82,204,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+.point-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.3rem; }
+.point-desc { color: var(--gray); font-size: 0.88rem; line-height: 1.6; }
+.why-visual { background: var(--light); border-radius: 20px; padding: 3rem; text-align: center; }
+.years-badge { font-family: 'Syne', sans-serif; font-size: 5rem; font-weight: 800; color: var(--blue); line-height: 1; }
+.years-text { font-size: 1rem; color: var(--gray); margin-top: 0.5rem; }
+.trust-items { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.trust-item { background: white; border-radius: 12px; padding: 1rem; text-align: left; }
+.trust-num { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--navy); }
+.trust-lbl { font-size: 0.78rem; color: var(--gray); }
+
+/* ─── BLOG ─── */
+.blog { background: var(--white); }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.blog-card { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.25s; }
+.blog-card:hover { border-color: var(--blue); box-shadow: 0 12px 35px rgba(20,82,204,0.1); transform: translateY(-3px); }
+.blog-thumb { height: 150px; display: flex; align-items: center; justify-content: center; font-size: 3rem; background: var(--light); }
+.blog-body { padding: 1.4rem; }
+.blog-cat { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); margin-bottom: 0.5rem; }
+.blog-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; line-height: 1.4; margin-bottom: 0.6rem; }
+.blog-excerpt { color: var(--gray); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem; }
+.blog-meta { display: flex; align-items: center; justify-content: space-between; }
+.blog-date { color: var(--gray); font-size: 0.8rem; }
+.read-more { color: var(--blue); font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+.read-more:hover { text-decoration: underline; }
+
+/* ─── MAP ─── */
+.map-section { background: var(--light); }
+.map-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+.map-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.info-item { display: flex; gap: 1rem; align-items: flex-start; }
+.info-icon { min-width: 44px; height: 44px; background: var(--blue); color: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+.info-label { font-size: 0.8rem; color: var(--gray); margin-bottom: 0.2rem; }
+.info-val { font-weight: 600; font-size: 0.95rem; }
+.map-embed { border-radius: 20px; overflow: hidden; border: 1px solid var(--border); height: 380px; }
+.map-embed iframe { width: 100%; height: 100%; border: none; }
+.map-placeholder { width: 100%; height: 100%; background: var(--navy); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: white; cursor: pointer; transition: background 0.2s; }
+.map-placeholder:hover { background: #0D1F3C; }
+.map-placeholder .map-icon { font-size: 3rem; }
+.map-placeholder p { font-size: 0.9rem; color: rgba(255,255,255,0.6); }
+.map-placeholder .map-btn { background: var(--blue); color: white; padding: 0.7rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; text-decoration: none; margin-top: 0.5rem; }
+
+/* ─── CONTACT ─── */
+.contact { background: white; }
+.contact-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; margin-top: 3rem; align-items: start; }
+.contact-form { background: var(--light); border-radius: 20px; padding: 2.5rem; border: 1px solid var(--border); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.form-group label { font-size: 0.85rem; font-weight: 500; color: var(--navy); }
+.form-group input, .form-group textarea, .form-group select { border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; background: white; color: var(--navy); }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(20,82,204,0.08); }
+.form-group textarea { resize: none; height: 100px; }
+.submit-btn { width: 100%; background: var(--blue); color: white; border: none; padding: 0.9rem; border-radius: 10px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; letter-spacing: 0.3px; }
+.submit-btn:hover { background: var(--sky); transform: translateY(-1px); box-shadow: 0 8px 25px rgba(20,82,204,0.3); }
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.whatsapp-card { background: #25D366; border-radius: 16px; padding: 1.8rem; color: white; text-align: center; cursor: pointer; transition: all 0.25s; text-decoration: none; display: block; }
+.whatsapp-card:hover { background: #1FB855; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(37,211,102,0.3); }
+.whatsapp-card .wa-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.whatsapp-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.3rem; }
+.whatsapp-card p { font-size: 0.88rem; opacity: 0.85; }
+
+/* ─── CART PANEL ─── */
+.cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; display: none; }
+.cart-panel { position: fixed; right: 0; top: 0; height: 100vh; width: 380px; background: white; z-index: 2001; transform: translateX(100%); transition: transform 0.35s ease; display: flex; flex-direction: column; }
+.cart-panel.open { transform: translateX(0); }
+.cart-header { padding: 1.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.cart-header h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; }
+.close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--gray); }
+.cart-items { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.cart-empty { text-align: center; color: var(--gray); margin-top: 3rem; }
+.cart-empty .cart-empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+.cart-item { display: flex; gap: 1rem; align-items: center; padding: 1rem; border: 1px solid var(--border); border-radius: 12px; }
+.cart-item-icon { width: 50px; height: 50px; background: var(--light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+.cart-item-info { flex: 1; }
+.cart-item-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+.cart-item-price { color: var(--blue); font-weight: 700; font-size: 0.9rem; }
+.remove-item { background: none; border: none; color: var(--gray); cursor: pointer; font-size: 1.1rem; }
+.remove-item:hover { color: var(--red); }
+.cart-footer { padding: 1.5rem; border-top: 1px solid var(--border); }
+.cart-total { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.cart-total span { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+.cart-total .total-price { color: var(--blue); font-size: 1.2rem; }
+.checkout-btn { width: 100%; background: var(--blue); color: white; border: none; padding: 0.9rem; border-radius: 10px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; }
+.checkout-btn:hover { background: var(--sky); }
+
+/* ─── FOOTER ─── */
+footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 4rem 5% 2rem; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-brand .logo { font-size: 1.3rem; display: inline-block; margin-bottom: 1rem; }
+.footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 260px; }
+.footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; color: white; font-size: 0.9rem; margin-bottom: 1.2rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--accent); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-bottom p { font-size: 0.82rem; }
+
+/* ─── WHATSAPP ─── */
+.whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 500; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 25px rgba(37,211,102,0.4); cursor: pointer; transition: all 0.25s; text-decoration: none; animation: pulse 2.5s infinite; }
+.whatsapp-float:hover { transform: scale(1.1); }
+@keyframes pulse { 0%,100%{box-shadow: 0 4px 25px rgba(37,211,102,0.4)} 50%{box-shadow: 0 4px 40px rgba(37,211,102,0.7)} }
+.whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+
+/* ─── TOAST ─── */
+.toast { position: fixed; bottom: 100px; right: 28px; z-index: 600; background: var(--navy); color: white; padding: 0.8rem 1.4rem; border-radius: 10px; font-size: 0.88rem; border: 1px solid rgba(20,82,204,0.3); box-shadow: 0 8px 30px rgba(0,0,0,0.3); transition: opacity 0.3s, transform 0.3s; opacity: 0; transform: translateY(10px); pointer-events: none; }
+.toast.show { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .hero-stats { display: none; }
+  .why-grid, .contact-grid, .map-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-item.tall, .gallery-item.wide { grid-column: auto; grid-row: auto; aspect-ratio: 1; min-height: auto; }
+}
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .review-summary { gap: 1.5rem; }
+  .platform-badge { padding: 0.8rem 1rem; }
+  .review-cta a { padding: 0.75rem 1.2rem; font-size: 0.85rem; }
+  .cart-panel { width: 100%; }
 }
 
-.enter{
-margin-top:40px;
-padding:15px 40px;
-font-size:20px;
-background:#1452CC;
-border:none;
-border-radius:8px;
-color:white;
-cursor:pointer;
+/* ─── SCROLL ANIMATION ─── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Unique<span>.</span>Computers</a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#blog">Tips & Blog</a></li>
+    <li><a href="#map-section">Location</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Quote</button>
+  </div>
+</nav>
+
+<!-- OFFERS BANNER -->
+<div class="offers-banner">
+  <div class="banner-track">
+    <span class="banner-item">🔥 Monsoon Sale — Up to 30% Off on Printers</span>
+    <span class="banner-item">💻 Free RAM Upgrade on Select Laptops</span>
+    <span class="banner-item">📷 CCTV Installation FREE with 4+ Camera Kit</span>
+    <span class="banner-item">0% EMI Available on All Products</span>
+    <span class="banner-item">⚡ Same Day Repair Service Available</span>
+    <span class="banner-item">🔥 Monsoon Sale — Up to 30% Off on Printers</span>
+    <span class="banner-item">💻 Free RAM Upgrade on Select Laptops</span>
+    <span class="banner-item">📷 CCTV Installation FREE with 4+ Camera Kit</span>
+    <span class="banner-item">0% EMI Available on All Products</span>
+    <span class="banner-item">⚡ Same Day Repair Service Available</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Saharanpur's #1 Computer Store</div>
+    <h1>Technology<br>that <span class="blue">Works</span><br>for You</h1>
+    <p class="hero-sub">Printers, CCTV, Laptops, Desktops & Accessories — Premium products with expert service. 21 years of trust in Saharanpur.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Shop Now</a>
+      <a href="#services" class="btn-secondary">Our Services →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card">
+      <div class="stat-num">21+</div>
+      <div class="stat-label">Years of Trust</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">5000+</div>
+      <div class="stat-label">Happy Customers</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Genuine Products</div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands">
+  <div class="brands-title">Trusted Brands We Stock</div>
+  <div class="brands-track-wrap">
+    <div class="brands-track">
+      <div class="brand-logo">🖨️ HP</div>
+      <div class="brand-logo">💻 Lenovo</div>
+      <div class="brand-logo">🍎 Apple</div>
+      <div class="brand-logo">📷 CP Plus</div>
+      <div class="brand-logo">🖥️ Dell</div>
+      <div class="brand-logo">📡 Hikvision</div>
+      <div class="brand-logo">🖨️ Epson</div>
+      <div class="brand-logo">💻 Asus</div>
+      <div class="brand-logo">🖥️ Acer</div>
+      <div class="brand-logo">📷 Dahua</div>
+      <div class="brand-logo">🖨️ Canon</div>
+      <div class="brand-logo">💻 Samsung</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="brand-logo">🖨️ HP</div>
+      <div class="brand-logo">💻 Lenovo</div>
+      <div class="brand-logo">🍎 Apple</div>
+      <div class="brand-logo">📷 CP Plus</div>
+      <div class="brand-logo">🖥️ Dell</div>
+      <div class="brand-logo">📡 Hikvision</div>
+      <div class="brand-logo">🖨️ Epson</div>
+      <div class="brand-logo">💻 Asus</div>
+      <div class="brand-logo">🖥️ Acer</div>
+      <div class="brand-logo">📷 Dahua</div>
+      <div class="brand-logo">🖨️ Canon</div>
+      <div class="brand-logo">💻 Samsung</div>
+    </div>
+  </div>
+</div>
+
+<!-- SPECIAL OFFERS -->
+<section class="special-offers" id="offers">
+  <div class="section-tag" style="color:var(--accent)">Limited Time</div>
+  <div class="section-title">Special Offers 🔥</div>
+  <div class="offers-grid reveal">
+    <div class="offer-card red">
+      <div class="offer-bg">🖨️</div>
+      <div class="offer-tag">Printers</div>
+      <div class="offer-title">Monsoon Sale</div>
+      <div class="offer-desc">All HP & Epson printers on flat discount</div>
+      <div class="offer-discount">30% OFF</div>
+      <div class="offer-sub">Valid till month end</div>
+    </div>
+    <div class="offer-card green">
+      <div class="offer-bg">📷</div>
+      <div class="offer-tag">CCTV</div>
+      <div class="offer-title">Free Installation</div>
+      <div class="offer-desc">Buy 4+ cameras, get installation absolutely free</div>
+      <div class="offer-discount">FREE</div>
+      <div class="offer-sub">Installation worth ₹1500</div>
+    </div>
+    <div class="offer-card blue">
+      <div class="offer-bg">💻</div>
+      <div class="offer-tag">Laptops</div>
+      <div class="offer-title">Free RAM Upgrade</div>
+      <div class="offer-desc">Get free 8GB RAM upgrade on selected models</div>
+      <div class="offer-discount">FREE 8GB</div>
+      <div class="offer-sub">On select models</div>
+    </div>
+    <div class="offer-card orange">
+      <div class="offer-bg">🔧</div>
+      <div class="offer-tag">Service</div>
+      <div class="offer-title">Service Package</div>
+      <div class="offer-desc">Annual computer maintenance package at special price</div>
+      <div class="offer-discount">₹999/yr</div>
+      <div class="offer-sub">Unlimited checkups</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <div class="section-tag">Browse By Category</div>
+  <div class="section-title">What are you looking for?</div>
+  <div class="cat-grid reveal">
+    <a href="#" class="cat-card"><div class="cat-icon">🖨️</div><div class="cat-name">Printers</div></a>
+    <a href="#" class="cat-card"><div class="cat-icon">📷</div><div class="cat-name">CCTV</div></a>
+    <a href="#" class="cat-card"><div class="cat-icon">💻</div><div class="cat-name">Laptops</div></a>
+    <a href="#" class="cat-card"><div class="cat-icon">🖥️</div><div class="cat-name">Desktops</div></a>
+    <a href="#" class="cat-card"><div class="cat-icon">🖱️</div><div class="cat-name">Accessories</div></a>
+    <a href="#" class="cat-card"><div class="cat-icon">⚙️</div><div class="cat-name">Services</div></a>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="products-header">
+    <div>
+      <div class="section-tag">Our Products</div>
+      <div class="section-title">Featured Products</div>
+    </div>
+    <div class="filter-tabs">
+      <button class="tab active" onclick="filterTab(this,'all')">All</button>
+      <button class="tab" onclick="filterTab(this,'printer')">Printers</button>
+      <button class="tab" onclick="filterTab(this,'cctv')">CCTV</button>
+      <button class="tab" onclick="filterTab(this,'laptop')">Laptops</button>
+      <button class="tab" onclick="filterTab(this,'desktop')">Desktops</button>
+    </div>
+  </div>
+  <div class="products-grid" id="productsGrid">
+    <div class="product-card reveal" data-cat="printer" data-name="HP LaserJet M107a" data-price="7499" data-icon="🖨️">
+      <div class="product-img">🖨️<span class="badge">Popular</span></div>
+      <div class="product-info">
+        <div class="product-name">HP LaserJet M107a</div>
+        <div class="product-brand">HP • Laser Printer</div>
+        <div class="product-footer">
+          <div class="price">₹7,499<br><span class="old">₹8,999</span></div>
+          <button class="add-btn" onclick="addToCart(this)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal" data-cat="cctv" data-name="CP Plus 4CH DVR Kit" data-price="5999" data-icon="📷">
+      <div class="product-img">📷<span class="badge new">New</span></div>
+      <div class="product-info">
+        <div class="product-name">CP Plus 4CH DVR Kit</div>
+        <div class="product-brand">CP Plus • 4 Camera</div>
+        <div class="product-footer">
+          <div class="price">₹5,999<br><span class="old">₹7,500</span></div>
+          <button class="add-btn" onclick="addToCart(this)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal" data-cat="laptop" data-name="HP 15s Intel i3 12th Gen" data-price="42999" data-icon="💻">
+      <div class="product-img">💻<span class="badge sale">Sale</span></div>
+      <div class="product-info">
+        <div class="product-name">HP 15s Intel i3 12th Gen</div>
+        <div class="product-brand">HP • 8GB RAM, 512GB SSD</div>
+        <div class="product-footer">
+          <div class="price">₹42,999<br><span class="old">₹48,000</span></div>
+          <button class="add-btn" onclick="addToCart(this)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal" data-cat="desktop" data-name="Assembled Desktop PC" data-price="35000" data-icon="🖥️">
+      <div class="product-img">🖥️</div>
+      <div class="product-info">
+        <div class="product-name">Assembled Desktop PC</div>
+        <div class="product-brand">Custom • i5, 16GB, 1TB</div>
+        <div class="product-footer">
+          <div class="price">₹35,000</div>
+          <button class="add-btn" onclick="addToCart(this)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal" data-cat="printer" data-name="Epson L3250 EcoTank" data-price="13499" data-icon="🖨️">
+      <div class="product-img">🖨️</div>
+      <div class="product-info">
+        <div class="product-name">Epson L3250 EcoTank</div>
+        <div class="product-brand">Epson • WiFi, 3-in-1</div>
+        <div class="product-footer">
+          <div class="price">₹13,499<br><span class="old">₹15,000</span></div>
+          <button class="add-btn" onclick="addToCart(this)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal" data-cat="cctv" data-name="Hikvision 2MP Dome" data-price="1899" data-icon="📷">
+      <div class="product-img">📷</div>
+      <div class="product-info">
+        <div class="product-name">Hikvision 2MP Dome</div>
+        <div class="product-brand">Hikvision • Night Vision</div>
+        <div class="product-footer">
+          <div class="price">₹1,899</div>
+          <button class="add-btn" onclick="addToCart(this)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal" data-cat="laptop" data-name="Lenovo IdeaPad Slim 3" data-price="38990" data-icon="💻">
+      <div class="product-img">💻<span class="badge new">New</span></div>
+      <div class="product-info">
+        <div class="product-name">Lenovo IdeaPad Slim 3</div>
+        <div class="product-brand">Lenovo • Ryzen 5, 512GB</div>
+        <div class="product-footer">
+          <div class="price">₹38,990</div>
+          <button class="add-btn" onclick="addToCart(this)">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal" data-cat="desktop" data-name="Accessories Combo Pack" data-price="999" data-icon="🖱️">
+      <div class="product-img">🖱️</div>
+      <div class="product-info">
+        <div class="product-name">Accessories Combo Pack</div>
+        <div class="product-brand">Mouse + Keyboard + Pad</div>
+        <div class="product-footer">
+          <div class="price">₹999<br><span class="old">₹1,499</span></div>
+          <button class="add-btn" onclick="addToCart(this)">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-tag" style="color:var(--accent)">What We Do</div>
+  <div class="section-title">Expert Services</div>
+  <p class="section-sub">Professional repair & installation by experienced technicians. Quick turnaround, genuine parts.</p>
+  <div class="services-grid reveal">
+    <div class="service-card"><div class="service-icon">🔧</div><div class="service-name">Computer Repair</div><div class="service-desc">Laptop & Desktop repair, hardware replacement, software installation, virus removal.</div><div class="service-price">Starting ₹299</div></div>
+    <div class="service-card"><div class="service-icon">🖨️</div><div class="service-name">Printer Service</div><div class="service-desc">Printer repair, cartridge refilling, driver installation, network setup.</div><div class="service-price">Starting ₹199</div></div>
+    <div class="service-card"><div class="service-icon">📹</div><div class="service-name">CCTV Installation</div><div class="service-desc">Home & office CCTV setup, DVR/NVR configuration, remote monitoring setup.</div><div class="service-price">Starting ₹500</div></div>
+    <div class="service-card"><div class="service-icon">📶</div><div class="service-name">Networking</div><div class="service-desc">LAN/WiFi setup, router configuration, network troubleshooting for home & office.</div><div class="service-price">Starting ₹399</div></div>
+  </div>
+</section>
+
+<!-- EMI -->
+<section class="emi" id="emi">
+  <div class="section-tag">Easy Finance</div>
+  <div class="section-title">0% EMI Available 💳</div>
+  <p class="section-sub">Apna sapna poora karo — aasaan kistoon mein. Koi interest nahi, koi tension nahi!</p>
+  <div class="emi-grid reveal">
+    <div class="emi-card"><div class="emi-icon">🏦</div><div class="emi-name">Bank EMI</div><div class="emi-desc">All major bank credit & debit cards accepted. 3, 6, 9, 12 month options.</div></div>
+    <div class="emi-card"><div class="emi-icon">📱</div><div class="emi-name">Bajaj Finance</div><div class="emi-desc">Instant approval on Bajaj Finserv EMI card. No cost EMI on all products.</div></div>
+    <div class="emi-card"><div class="emi-icon">💰</div><div class="emi-name">Cash on Delivery</div><div class="emi-desc">Pay when your product is delivered to your door. 100% safe & reliable.</div></div>
+    <div class="emi-card"><div class="emi-icon">📲</div><div class="emi-name">UPI / Online</div><div class="emi-desc">GPay, PhonePe, Paytm, NEFT — all digital payments accepted instantly.</div></div>
+  </div>
+  <div class="emi-highlight reveal">
+    <h3>📞 Call us for EMI details: +91 93584 85644</h3>
+    <p>Laptop ₹42,999 → Sirf ₹3,583/month | No interest | Instant approval</p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-tag">Our Store</div>
+  <div class="section-title">Photo Gallery 📸</div>
+  <p class="section-sub">Hamare store mein aao ya online dekho — sab kuch aapke liye available hai!</p>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item tall" style="background:linear-gradient(135deg,#1452CC,#0A1628)">
+      <span style="font-size:4rem">🖥️</span>
+      <div class="gallery-overlay">Store Front</div>
+      <div class="gallery-label">Our Store</div>
+    </div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#0A1628,#1E3A5F)">
+      <span>💻</span>
+      <div class="gallery-overlay">Laptop Section</div>
+      <div class="gallery-label">Laptops</div>
+    </div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#064E3B,#1452CC)">
+      <span>📷</span>
+      <div class="gallery-overlay">CCTV Display</div>
+      <div class="gallery-label">CCTV Corner</div>
+    </div>
+    <div class="gallery-item wide" style="background:linear-gradient(135deg,#1E3A5F,#0A1628)">
+      <span style="font-size:4rem">🔧</span>
+      <div class="gallery-overlay">Service Workshop</div>
+      <div class="gallery-label">Repair Workshop</div>
+    </div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#78350F,#1452CC)">
+      <span>🖨️</span>
+      <div class="gallery-overlay">Printer Collection</div>
+      <div class="gallery-label">Printers</div>
+    </div>
+    <div class="gallery-item" style="background:linear-gradient(135deg,#4A1D96,#1452CC)">
+      <span>🖱️</span>
+      <div class="gallery-overlay">Accessories</div>
+      <div class="gallery-label">Accessories</div>
+    </div>
+  </div>
+  <p style="color:var(--gray);font-size:0.85rem;margin-top:1rem;text-align:center">📷 Apni store ki actual photos upload karke replace kar sakte ho in placeholder images ko</p>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-tag">What Customers Say</div>
+  <div class="section-title">Original Customer Reviews ⭐</div>
+
+  <!-- Platform Badges -->
+  <div class="review-platforms reveal">
+    <a href="https://www.google.com/maps/search/Unique+Computer+41+Pawan+Bela+Market+Court+Road+Saharanpur+247001" target="_blank" class="platform-badge">
+      <div class="platform-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      </div>
+      <div class="platform-info">
+        <div class="platform-name">Google Reviews</div>
+        <div class="platform-rating"><span class="stars">★★★★</span> 4.3 / 5 • 63 Reviews</div>
+      </div>
+    </a>
+    <a href="https://www.justdial.com/Saharanpur/Unique-Computer-Near-Pawan-Bela-Market-Opposite-Income-Tax-Office-Naveen-Nagar/9999PX132-X132-110329114910-T5Q5_BZDET" target="_blank" class="platform-badge">
+      <div class="platform-icon" style="color:#FFD700;font-weight:800;font-family:'Syne',sans-serif;font-size:1.4rem">JD</div>
+      <div class="platform-info">
+        <div class="platform-name">Justdial Reviews</div>
+        <div class="platform-rating"><span class="stars">★★★★</span> 4.2 / 5 • 50 Ratings</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="review-summary reveal">
+    <div class="summary-item"><div class="summary-num">4.3⭐</div><div class="summary-label">Google Rating</div></div>
+    <div class="summary-item"><div class="summary-num">5000+</div><div class="summary-label">Happy Customers</div></div>
+    <div class="summary-item"><div class="summary-num">21 Yrs</div><div class="summary-label">Building Trust</div></div>
+    <div class="summary-item"><div class="summary-num">98%</div><div class="summary-label">Recommend Us</div></div>
+  </div>
+
+  <!-- Elfsight Google Reviews Widget - Live reviews from Google -->
+  <div class="reveal" style="margin-top: 2rem;">
+    <div class="elfsight-app-3f8732c1-ae03-4ae3-8146-c3037c1df736" data-elfsight-app-lazy></div>
+  </div>
+
+  <!-- Review CTA Buttons -->
+  <div class="review-cta reveal">
+    <a href="https://www.google.com/maps/search/Unique+Computer+41+Pawan+Bela+Market+Court+Road+Saharanpur+247001" target="_blank" class="btn-google">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      See All Google Reviews (63)
+    </a>
+    <a href="https://www.google.com/maps/search/Unique+Computer+41+Pawan+Bela+Market+Court+Road+Saharanpur+247001" target="_blank" class="btn-google" style="background:var(--green);">
+      ✍️ Write a Review on Google
+    </a>
+    <a href="https://www.justdial.com/Saharanpur/Unique-Computer-Near-Pawan-Bela-Market-Opposite-Income-Tax-Office-Naveen-Nagar/9999PX132-X132-110329114910-T5Q5_BZDET" target="_blank" class="btn-jd">
+      See Justdial Reviews (50 Ratings)
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT / WHY US -->
+<section id="about">
+  <div class="section-tag">Why Choose Us</div>
+  <div class="section-title">21 Years of Trusted Service</div>
+  <div class="why-grid">
+    <div class="why-points reveal">
+      <div class="why-point"><div class="point-icon">✅</div><div><div class="point-title">100% Genuine Products</div><div class="point-desc">We sell only original, warranty-backed products from trusted brands. No duplicates, no compromise.</div></div></div>
+      <div class="why-point"><div class="point-icon">⚡</div><div><div class="point-title">Same Day Repair Service</div><div class="point-desc">Most repairs done on same day. We value your time as much as we value our work.</div></div></div>
+      <div class="why-point"><div class="point-icon">💰</div><div><div class="point-title">Best Price Guarantee</div><div class="point-desc">Competitive pricing with no hidden charges. We match or beat any local price.</div></div></div>
+      <div class="why-point"><div class="point-icon">🤝</div><div><div class="point-title">Post-Sale Support</div><div class="point-desc">We don't disappear after a sale. Call us anytime for support and guidance.</div></div></div>
+    </div>
+    <div class="why-visual reveal">
+      <div class="years-badge">21+</div>
+      <div class="years-text">Years Serving Saharanpur</div>
+      <div class="trust-items">
+        <div class="trust-item"><div class="trust-num">5000+</div><div class="trust-lbl">Customers</div></div>
+        <div class="trust-item"><div class="trust-num">10K+</div><div class="trust-lbl">Repairs Done</div></div>
+        <div class="trust-item"><div class="trust-num">50+</div><div class="trust-lbl">Brands Stocked</div></div>
+        <div class="trust-item"><div class="trust-num">4.3⭐</div><div class="trust-lbl">Avg Rating</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <div class="section-tag">Tips & Advice</div>
+  <div class="section-title">Tech Tips & Blog 📝</div>
+  <p class="section-sub">Free technical advice from our 21 years of experience. Helpful tips for everyone!</p>
+  <div class="blog-grid reveal">
+    <div class="blog-card">
+      <div class="blog-thumb">🖨️</div>
+      <div class="blog-body">
+        <div class="blog-cat">Printer Tips</div>
+        <div class="blog-title">Printer cartridge kab refill karein aur kab replace?</div>
+        <div class="blog-excerpt">Original cartridge ya refill — dono ke fayde aur nuksan. Paisa bachane ka sahi tarika...</div>
+        <div class="blog-meta"><span class="blog-date">Jan 2025</span><a href="#" class="read-more">Read More →</a></div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-thumb">💻</div>
+      <div class="blog-body">
+        <div class="blog-cat">Laptop Guide</div>
+        <div class="blog-title">Laptop slow ho gaya? 5 aasaan tricks se fast karo</div>
+        <div class="blog-excerpt">Bina koi paisa kharch kiye apna purana laptop naya jaisa fast bana sakte ho. Yeh simple steps follow karo...</div>
+        <div class="blog-meta"><span class="blog-date">Feb 2025</span><a href="#" class="read-more">Read More →</a></div>
+      </div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-thumb">📷</div>
+      <div class="blog-body">
+        <div class="blog-cat">CCTV Guide</div>
+        <div class="blog-title">Ghar ke liye best CCTV system 2025 — complete guide</div>
+        <div class="blog-excerpt">4 camera ya 8 camera? DVR ya NVR? Budget ke hisaab se sabse sahi system kaun sa hai...</div>
+        <div class="blog-meta"><span class="blog-date">Mar 2025</span><a href="#" class="read-more">Read More →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section" id="map-section">
+  <div class="section-tag">Find Us</div>
+  <div class="section-title">Visit Our Store 📍</div>
+  <div class="map-grid reveal">
+    <div class="map-info">
+      <div class="info-item"><div class="info-icon">📍</div><div><div class="info-label">Store Address</div><div class="info-val">Unique Computers<br>41, Pawan Bela Market, Opposite Income Tax Office,<br>Court Road, Saharanpur-247001</div></div></div>
+      <div class="info-item"><div class="info-icon">📞</div><div><div class="info-label">Phone / WhatsApp</div><div class="info-val">+91 93584 85644</div></div></div>
+      <div class="info-item"><div class="info-icon">🕐</div><div><div class="info-label">Store Hours</div><div class="info-val">Wed–Mon: 11AM – 8PM<br>Tuesday: Closed</div></div></div>
+      <div class="info-item"><div class="info-icon">📧</div><div><div class="info-label">Email</div><div class="info-val">harmeetsinghuniqueworld@gmail.com</div></div></div>
+      <a href="https://maps.google.com/?q=41+Pawan+Bela+Market+Court+Road+Saharanpur+247001" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:0.5rem;text-decoration:none;width:fit-content">📍 Get Directions</a>
+    </div>
+    <div class="map-embed">
+      <div class="map-placeholder" onclick="loadMap(this)">
+        <div class="map-icon">🗺️</div>
+        <p>Click to load Google Map</p>
+        <a class="map-btn">Load Map</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-tag">Get In Touch</div>
+  <div class="section-title">Send Us a Message</div>
+  <div class="contact-grid">
+    <div class="contact-form reveal">
+      <h3 style="font-family:'Syne',sans-serif;font-size:1.2rem;margin-bottom:1.5rem;">Send your query</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="Aapka naam"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 93584 85644"></div>
+      </div>
+      <div class="form-group"><label>What do you need?</label>
+        <select><option>Select a category</option><option>Buy a Product</option><option>Laptop Repair</option><option>Printer Service</option><option>CCTV Installation</option><option>EMI Query</option><option>Get a Quote</option><option>Other</option></select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell us more about what you need..."></textarea></div>
+      <button class="submit-btn" onclick="submitForm()">Send Message →</button>
+    </div>
+    <div class="contact-info reveal">
+      <a href="https://wa.me/919358485644" class="whatsapp-card" target="_blank">
+        <div class="wa-icon">💬</div>
+        <h3>Chat on WhatsApp</h3>
+        <p>Fastest way to reach us! Usually replies within minutes.</p>
+      </a>
+      <div class="info-item" style="margin-top:1rem"><div class="info-icon">⭐</div><div><div class="info-label">Google Rating</div><div class="info-val"><a href="https://www.google.com/maps/search/Unique+Computer+41+Pawan+Bela+Market+Court+Road+Saharanpur+247001" target="_blank" style="color:var(--accent);text-decoration:none">4.3/5 — 63 Reviews (See on Google)</a></div></div></div>
+      <div class="info-item"><div class="info-icon">🚀</div><div><div class="info-label">Response Time</div><div class="info-val">Usually within 30 minutes</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">Unique<span style="color:var(--accent)">.</span>Computers</a>
+      <p>Saharanpur ka sabse trusted computer store. 21 saal se aapki technology needs ko poora kar rahe hain.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul><li><a href="#">Printers</a></li><li><a href="#">CCTV Systems</a></li><li><a href="#">Laptops</a></li><li><a href="#">Desktops</a></li><li><a href="#">Accessories</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul><li><a href="#">Computer Repair</a></li><li><a href="#">Printer Service</a></li><li><a href="#">CCTV Installation</a></li><li><a href="#">Networking</a></li><li><a href="#">AMC Package</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul><li><a href="#offers">Special Offers</a></li><li><a href="#emi">EMI Options</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#blog">Tech Tips</a></li><li><a href="#contact">Contact Us</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Unique Computers, Saharanpur. All rights reserved. | Est. 2003</p>
+    <p>Made with ❤️ for Saharanpur</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919358485644" class="whatsapp-float" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h3>🛒 Your Cart</h3>
+    <button class="close-cart" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Cart khali hai!<br>Products add karo</p></div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span>Total Amount:</span><span class="total-price" id="cartTotal">₹0</span></div>
+    <button class="checkout-btn" onclick="checkout()">📱 WhatsApp se Order Karo →</button>
+  </div>
+</div>
+
+<script>
+// ─── CART SYSTEM ───
+let cart = [];
+
+function addToCart(btn) {
+  const card = btn.closest('.product-card');
+  const name = card.dataset.name;
+  const price = parseInt(card.dataset.price);
+  const icon = card.dataset.icon;
+  const existing = cart.find(i => i.name === name);
+  if (existing) { existing.qty++; }
+  else { cart.push({ name, price, icon, qty: 1 }); }
+  btn.textContent = '✓';
+  btn.style.background = '#10B981';
+  setTimeout(() => { btn.textContent = '+'; btn.style.background = 'var(--blue)'; }, 1200);
+  updateCartUI();
+  showToast(`✅ ${name} added to cart!`);
 }
 
-</style></head><body><div class="logo">Unique Computers</div><button class="enter" onclick="enterSite()">
-Enter Website
-</button><script>
-
-function enterSite(){
-window.location.href="home.html"
+function updateCartUI() {
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const countEl = document.getElementById('cartCount');
+  countEl.textContent = count;
+  countEl.style.display = count > 0 ? 'flex' : 'none';
+  const itemsEl = document.getElementById('cartItems');
+  const footerEl = document.getElementById('cartFooter');
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Cart khali hai!<br>Products add karo</p></div>';
+    footerEl.style.display = 'none';
+  } else {
+    itemsEl.innerHTML = cart.map((item, i) => `
+      <div class="cart-item">
+        <div class="cart-item-icon">${item.icon}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">₹${item.price.toLocaleString('en-IN')} × ${item.qty}</div>
+        </div>
+        <button class="remove-item" onclick="removeItem(${i})">🗑</button>
+      </div>`).join('');
+    footerEl.style.display = 'block';
+    document.getElementById('cartTotal').textContent = '₹' + total.toLocaleString('en-IN');
+  }
 }
 
-setTimeout(()=>{
-window.location.href="home.html"
-},5000)
+function removeItem(i) {
+  cart.splice(i, 1);
+  updateCartUI();
+}
 
-</script></body>
+function openCart() {
+  document.getElementById('cartPanel').classList.add('open');
+  document.getElementById('cartOverlay').style.display = 'block';
+}
+
+function closeCart() {
+  document.getElementById('cartPanel').classList.remove('open');
+  document.getElementById('cartOverlay').style.display = 'none';
+}
+
+function checkout() {
+  if (cart.length === 0) return;
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const items = cart.map(i => `• ${i.name} (${i.qty}x) = ₹${(i.price * i.qty).toLocaleString('en-IN')}`).join('\n');
+  const msg = encodeURIComponent(`Namaste! Main yeh items order karna chahta hoon:\n\n${items}\n\nTotal: ₹${total.toLocaleString('en-IN')}\n\nKripya confirm karein.`);
+  window.open(`https://wa.me/919358485644?text=${msg}`, '_blank');
+}
+
+// ─── FILTER ───
+function filterTab(el, cat) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+// ─── TOAST ───
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ─── MAP ───
+function loadMap(el) {
+  const parent = el.parentElement;
+  parent.innerHTML = `<iframe src="https://maps.google.com/maps?q=41+Pawan+Bela+Market+Court+Road+Saharanpur+247001&z=16&output=embed" style="width:100%;height:100%;border:none;"></iframe>`;
+}
+
+// ─── FORM ───
+function submitForm() {
+  showToast('✅ Message sent! Harmeet ji will contact you soon.');
+}
+
+// ─── SCROLL REVEAL ───
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
 </html>
